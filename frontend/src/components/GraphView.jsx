@@ -3,10 +3,10 @@ import ForceGraph2D from "react-force-graph-2d";
 import { getGraph } from "../api/client.js";
 
 const NODE_COLORS = {
-  module: "#5b5bd6", // indigo
-  class: "#a3e635", // lime
+  module: "#637bc0", // soft blue
+  class: "#49a581", // mint green
 };
-const DEFAULT_NODE_COLOR = "#64d2ff";
+const DEFAULT_NODE_COLOR = "#2a9eb6";
 
 function nodeColor(node) {
   return NODE_COLORS[node.type] || DEFAULT_NODE_COLOR;
@@ -86,7 +86,7 @@ export default function GraphView({ repoId }) {
     ctx.arc(node.x, node.y, radius + 4, 0, 2 * Math.PI);
     ctx.fillStyle =
       node === selectedRef.current
-        ? "rgba(255,255,255,0.35)"
+        ? "rgba(84,119,189,0.25)"
         : `${color}33`;
     ctx.fill();
 
@@ -102,7 +102,7 @@ export default function GraphView({ repoId }) {
     ctx.font = `600 ${fontSize}px Inter, sans-serif`;
     ctx.textAlign = "center";
     ctx.textBaseline = "top";
-    ctx.fillStyle = "rgba(232,234,240,0.92)";
+    ctx.fillStyle = "rgba(39,52,77,0.92)";
     ctx.fillText(label, node.x, node.y + radius + 4);
   }, []);
 
@@ -162,7 +162,7 @@ export default function GraphView({ repoId }) {
           backgroundColor="rgba(0,0,0,0)"
           nodeCanvasObject={paintNode}
           nodeLabel={(node) => `${node.label || node.id} (${node.type || "node"})`}
-          linkColor={() => "rgba(120,130,160,0.35)"}
+          linkColor={() => "rgba(104,122,156,0.38)"}
           linkWidth={1.2}
           linkDirectionalArrowLength={4}
           linkDirectionalArrowRelPos={1}

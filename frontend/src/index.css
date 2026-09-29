@@ -1,36 +1,36 @@
 /* ---------------------------------------------------------------------------
  * RepoRadar — global stylesheet
- * Dark dev-tool aesthetic (Linear / Vercel inspired), CSS variables,
+ * Soft pastel spectrum palette with cyan glow accents, CSS variables,
  * responsive breakpoints. Plain hand-crafted CSS.
  * ------------------------------------------------------------------------- */
 
 :root {
-  --bg: #0a0b10;
-  --bg-elevated: #101218;
-  --bg-card: #14171f;
-  --bg-card-hover: #191d28;
-  --border: #232836;
-  --border-strong: #323a4f;
-  --text: #e8eaf0;
-  --text-muted: #9aa3b8;
-  --text-faint: #646e86;
-  --accent: #5b5bd6;
-  --accent-strong: #6f6ff0;
-  --accent-soft: rgba(91, 91, 214, 0.14);
-  --accent-gradient: linear-gradient(135deg, #5b5bd6, #8b5cf6);
-  --success: #22c55e;
-  --success-soft: rgba(34, 197, 94, 0.12);
-  --warning: #f59e0b;
-  --warning-soft: rgba(245, 158, 11, 0.12);
-  --danger: #ef4444;
-  --danger-soft: rgba(239, 68, 68, 0.12);
-  --slate: #94a3b8;
-  --slate-soft: rgba(148, 163, 184, 0.12);
-  --cyan: #64d2ff;
-  --lime: #a3e635;
+  --bg: #f8f9fc;
+  --bg-elevated: #f3f5fb;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f7f8ff;
+  --border: #e3e7f0;
+  --border-strong: #cbd5e5;
+  --text: #27344d;
+  --text-muted: #58677f;
+  --text-faint: #7d899e;
+  --accent: #5477bd;
+  --accent-strong: #365fa8;
+  --accent-soft: rgba(84, 119, 189, 0.13);
+  --accent-gradient: linear-gradient(120deg, #5879bf 0%, #289db7 55%, #4ca989 100%);
+  --success: #247c5b;
+  --success-soft: rgba(50, 157, 117, 0.12);
+  --warning: #9b6a13;
+  --warning-soft: rgba(226, 173, 54, 0.16);
+  --danger: #bd4658;
+  --danger-soft: rgba(218, 91, 110, 0.1);
+  --slate: #63728a;
+  --slate-soft: rgba(99, 114, 138, 0.1);
+  --cyan: #18899d;
+  --lime: #568a65;
   --radius: 12px;
   --radius-sm: 8px;
-  --shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+  --shadow: 0 12px 40px rgba(74, 91, 132, 0.1);
   --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas,
@@ -65,8 +65,10 @@ body::before {
   pointer-events: none;
   z-index: 0;
   background:
-    radial-gradient(600px 300px at 15% -5%, rgba(91, 91, 214, 0.12), transparent 60%),
-    radial-gradient(500px 260px at 90% 10%, rgba(139, 92, 246, 0.08), transparent 60%);
+    radial-gradient(600px 300px at 8% -5%, rgba(248, 190, 183, 0.28), transparent 62%),
+    radial-gradient(560px 280px at 38% 0%, rgba(207, 183, 237, 0.22), transparent 62%),
+    radial-gradient(620px 300px at 72% -4%, rgba(157, 221, 231, 0.22), transparent 62%),
+    radial-gradient(560px 280px at 100% 4%, rgba(226, 231, 158, 0.22), transparent 62%);
 }
 
 #root {
@@ -94,61 +96,38 @@ button {
   flex-direction: column;
 }
 
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  backdrop-filter: blur(12px);
-  background: rgba(10, 11, 16, 0.75);
-  border-bottom: 1px solid var(--border);
-}
-
-.site-header .header-inner {
+.brand-row {
+  position: relative;
+  z-index: 2;
+  width: 100%;
   max-width: 1180px;
   margin: 0 auto;
-  padding: 0.9rem 1.5rem;
+  padding: 1.3rem 1.5rem 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .brand {
   display: flex;
   align-items: center;
-  gap: 0.65rem;
-  color: var(--text);
-  font-weight: 700;
-  font-size: 1.15rem;
-  letter-spacing: -0.01em;
 }
 .brand:hover {
   text-decoration: none;
 }
-.brand-mark {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  background: var(--accent-gradient);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-  box-shadow: 0 4px 14px rgba(91, 91, 214, 0.4);
+.brand-logo {
+  display: block;
+  width: 480px;
+  max-width: 54vw;
+  height: auto;
 }
-.nav-links {
-  display: flex;
-  gap: 1.25rem;
-  align-items: center;
-}
-.nav-links a {
-  color: var(--text-muted);
-  font-size: 0.95rem;
-  font-weight: 500;
-}
-.nav-links a:hover,
-.nav-links a.active {
-  color: var(--text);
-  text-decoration: none;
+.home-link {
+  position: absolute;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0.5rem 0.9rem;
+  font-size: 0.86rem;
 }
 
 .main-content {
@@ -156,7 +135,7 @@ button {
   width: 100%;
   max-width: 1180px;
   margin: 0 auto;
-  padding: 2.5rem 1.5rem 4rem;
+  padding: 1.25rem 1.5rem 4rem;
 }
 
 .site-footer {
@@ -194,10 +173,10 @@ button {
 .btn-primary {
   background: var(--accent-gradient);
   color: #fff;
-  box-shadow: 0 6px 20px rgba(91, 91, 214, 0.35);
+  box-shadow: 0 6px 20px rgba(62, 126, 166, 0.22);
 }
 .btn-primary:hover:not(:disabled) {
-  box-shadow: 0 8px 26px rgba(91, 91, 214, 0.5);
+  box-shadow: 0 8px 26px rgba(62, 126, 166, 0.3);
   transform: translateY(-1px);
 }
 .btn-primary:disabled {
@@ -239,7 +218,7 @@ button {
 .spinner {
   width: 18px;
   height: 18px;
-  border: 2.5px solid rgba(255, 255, 255, 0.25);
+  border: 2.5px solid rgba(255, 255, 255, 0.45);
   border-top-color: #fff;
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
@@ -270,7 +249,7 @@ button {
 }
 .error-panel {
   background: var(--danger-soft);
-  border: 1px solid rgba(239, 68, 68, 0.3);
+  border: 1px solid rgba(189, 70, 88, 0.24);
   border-radius: var(--radius);
 }
 .error-panel h3 {
@@ -296,7 +275,7 @@ button {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(255, 255, 255, 0.05),
+    rgba(106, 129, 164, 0.12),
     transparent
   );
   animation: shimmer 1.4s infinite;
@@ -313,7 +292,7 @@ button {
 /* ---------------- Home hero ---------------- */
 .hero {
   text-align: center;
-  padding: 3.5rem 1rem 2.5rem;
+  padding: 1.25rem 1rem 1rem;
   max-width: 760px;
   margin: 0 auto;
 }
@@ -325,13 +304,13 @@ button {
   text-transform: uppercase;
   color: var(--accent-strong);
   background: var(--accent-soft);
-  border: 1px solid rgba(91, 91, 214, 0.35);
+  border: 1px solid rgba(84, 119, 189, 0.25);
   padding: 0.3rem 0.9rem;
   border-radius: 999px;
   margin-bottom: 1.25rem;
 }
 .hero h1 {
-  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  font-size: clamp(1.55rem, 3.2vw, 2.35rem);
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1.12;
@@ -354,7 +333,7 @@ button {
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.6rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 0.75rem;
 }
 .feature-bullets .badge {
   font-size: 0.82rem;
@@ -428,11 +407,21 @@ button {
 .repo-form {
   max-width: 640px;
   margin: 0 auto;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
+  background:
+    linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+    linear-gradient(115deg, #38bdf8, #2563eb, #a5deff, #2563eb, #38bdf8) border-box;
+  background-size: 100% 100%, 240% 240%;
+  background-position: 0 0, 0% 50%;
+  border: 1.5px solid transparent;
   border-radius: var(--radius);
   padding: 1.75rem;
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow), 0 0 12px rgba(59, 130, 246, 0.2), 0 0 24px rgba(56, 189, 248, 0.12);
+  animation: repo-form-border-shine 5s ease-in-out infinite alternate;
+}
+@keyframes repo-form-border-shine {
+  to {
+    background-position: 0 0, 100% 50%;
+  }
 }
 .repo-form label {
   display: block;
@@ -447,23 +436,55 @@ button {
 .repo-form input[type="url"],
 .repo-form input[type="text"] {
   flex: 1;
-  background: var(--bg-elevated);
-  border: 1px solid var(--border-strong);
+  background-color: #ffffff;
+  background-image:
+    linear-gradient(#ffffff, #ffffff),
+    linear-gradient(110deg, #54d5e8 0%, #9bd8ed 24%, #a9a0e5 49%, #e7a9d5 72%, #54d5e8 100%);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  background-size: 100% 100%, 260% 100%;
+  background-position: 0 0, 0% 50%;
+  animation: search-border-shimmer 6s ease-in-out infinite;
+  border: 1px solid transparent;
   border-radius: var(--radius-sm);
   color: var(--text);
   padding: 0.7rem 1rem;
   font-size: 0.95rem;
   font-family: var(--font-mono);
   outline: none;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition: box-shadow 0.2s ease, background-image 0.2s ease;
   min-width: 0;
 }
 .repo-form input:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-soft);
+  box-shadow:
+    0 0 0 3px rgba(73, 198, 222, 0.16),
+    0 0 19px rgba(76, 214, 239, 0.3),
+    0 0 32px rgba(137, 175, 232, 0.18);
 }
 .repo-form input.invalid {
-  border-color: var(--danger);
+  background-image:
+    linear-gradient(#ffffff, #ffffff),
+    linear-gradient(110deg, #dc7181, #efb0a6);
+  animation: none;
+  box-shadow: 0 0 0 3px var(--danger-soft);
+}
+@keyframes search-border-shimmer {
+  0%,
+  100% {
+    background-position: 0 0, 0% 50%;
+  }
+  50% {
+    background-position: 0 0, 100% 50%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .repo-form {
+    animation: none;
+  }
+  .repo-form input[type="url"],
+  .repo-form input[type="text"] {
+    animation: none;
+  }
 }
 .repo-form .form-error {
   color: var(--danger);
@@ -523,7 +544,7 @@ button {
   background-size: 200% 100%;
   animation: progress-shimmer 1.6s linear infinite;
   transition: width 0.6s ease;
-  box-shadow: 0 0 16px rgba(91, 91, 214, 0.55);
+  box-shadow: 0 0 16px rgba(58, 162, 183, 0.3);
 }
 @keyframes progress-shimmer {
   from {
@@ -562,7 +583,7 @@ button {
 }
 .stage-step.finished {
   color: var(--success);
-  border-color: rgba(34, 197, 94, 0.4);
+  border-color: rgba(36, 124, 91, 0.35);
 }
 
 /* ---------------- RepoDetail ---------------- */
@@ -924,19 +945,19 @@ button {
 }
 
 .sev-high {
-  color: #fca5a5;
+  color: #a63348;
   background: var(--danger-soft);
-  border-color: rgba(239, 68, 68, 0.35);
+  border-color: rgba(189, 70, 88, 0.28);
 }
 .sev-medium {
-  color: #fcd34d;
+  color: #93600b;
   background: var(--warning-soft);
-  border-color: rgba(245, 158, 11, 0.35);
+  border-color: rgba(183, 131, 30, 0.28);
 }
 .sev-low {
-  color: #cbd5e1;
+  color: #596982;
   background: var(--slate-soft);
-  border-color: rgba(148, 163, 184, 0.35);
+  border-color: rgba(99, 114, 138, 0.25);
 }
 
 /* ---------------- GuideView (markdown) ---------------- */
@@ -1000,7 +1021,7 @@ button {
   color: var(--cyan);
 }
 .guide-article pre {
-  background: #0d0f15;
+  background: #f1f4fa;
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   padding: 1.1rem 1.25rem;
@@ -1086,7 +1107,7 @@ button {
 
 @media (max-width: 640px) {
   .main-content {
-    padding: 1.75rem 1rem 3rem;
+    padding: 1.25rem 1rem 3rem;
   }
   .repo-form .input-row {
     flex-direction: column;
@@ -1095,7 +1116,7 @@ button {
     width: 100%;
   }
   .hero {
-    padding: 2.25rem 0.5rem 1.75rem;
+    padding: 1rem 0.5rem 0.75rem;
   }
   .guide-article {
     padding: 1.4rem;
@@ -1111,7 +1132,28 @@ button {
   .smell-row-file {
     display: none;
   }
-  .nav-links {
-    gap: 0.9rem;
+  .brand-row {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+  .home-link {
+    right: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .brand-logo {
+    width: 290px;
+    max-width: 70vw;
+  }
+  .home-link {
+    position: static;
+    align-self: flex-end;
+    transform: none;
+    margin-right: 0.25rem;
   }
 }

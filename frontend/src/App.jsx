@@ -1,30 +1,29 @@
-import { BrowserRouter, Routes, Route, Link, NavLink } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, useLocation } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import RepoDetail from "./pages/RepoDetail.jsx";
 import JobPage from "./pages/JobPage.jsx";
+import repoRadarLogo from "./assets/reporadar-logo-v3.svg";
 import "./index.css";
 
-function Header() {
+function BrandBar() {
+  const { pathname } = useLocation();
+  const showHomeLink = pathname.startsWith("/repo/") || pathname.startsWith("/job/");
+
   return (
-    <header className="site-header">
-      <div className="header-inner">
-        <Link to="/" className="brand">
-          <span className="brand-mark" aria-hidden="true">
-            ◎
-          </span>
-          RepoRadar
+    <div className="brand-row">
+      <Link to="/" className="brand">
+        <img
+          src={repoRadarLogo}
+          alt="RepoRadar"
+          className="brand-logo"
+        />
+      </Link>
+      {showHomeLink && (
+        <Link to="/" className="btn btn-ghost home-link">
+          Home
         </Link>
-        <nav className="nav-links">
-          <NavLink
-            to="/"
-            end
-            className={({ isActive }) => (isActive ? "active" : undefined)}
-          >
-            Home
-          </NavLink>
-        </nav>
-      </div>
-    </header>
+      )}
+    </div>
   );
 }
 
@@ -53,7 +52,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <div className="app-shell">
-        <Header />
+        <BrandBar />
         <main className="main-content">
           <Routes>
             <Route path="/" element={<Home />} />

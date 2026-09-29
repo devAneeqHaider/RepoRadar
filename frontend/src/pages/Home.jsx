@@ -113,13 +113,8 @@ export default function Home() {
       <section className="hero">
         <span className="hero-kicker">AI Repository Architect</span>
         <h1>
-          Understand any repo <span className="gradient-text">in minutes</span>
+          Read Less Code. <span className="gradient-text">Understand More.</span>
         </h1>
-        <p className="tagline">
-          RepoRadar clones a GitHub repository, maps its architecture, flags
-          code smells, and writes you an onboarding guide — so you can onboard
-          to any codebase without reading every file.
-        </p>
         <div className="feature-bullets">
           <span className="badge">🕸 Architecture graph</span>
           <span className="badge">🔍 Code-smell detection</span>
