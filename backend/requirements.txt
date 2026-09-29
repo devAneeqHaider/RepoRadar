@@ -6,3 +6,4 @@ psycopg[binary]
 google-generativeai
 python-dotenv
 gunicorn
+reportlab>=4,<5

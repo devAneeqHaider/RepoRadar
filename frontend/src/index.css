@@ -608,6 +608,17 @@ button {
   font-size: 0.82rem;
   color: var(--text-faint);
 }
+.report-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+.report-error {
+  color: var(--danger);
+  font-size: 0.85rem;
+}
 
 .tabs {
   display: flex;

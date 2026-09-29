@@ -23,4 +23,9 @@ urlpatterns = [
         views.RepositoryGuideView.as_view(),
         name="repo-guide",
     ),
+    path(
+        "repos/<int:pk>/report/",
+        views.RepositoryReportView.as_view(),
+        name="repo-report",
+    ),
 ]

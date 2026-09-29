@@ -84,3 +84,29 @@ export function getSmells(id) {
 export function getGuide(id) {
   return request("GET", `/api/repos/${encodeURIComponent(id)}/guide/`);
 }
+
+/** GET /api/repos/<id>/report/ -> download the repository analysis PDF */
+export async function downloadReport(id) {
+  const res = await fetch(url(`/api/repos/${encodeURIComponent(id)}/report/`));
+  if (!res.ok) {
+    const data = await parseBody(res);
+    const message =
+      (data && typeof data === "object" && (data.error || data.message || data.detail)) ||
+      (typeof data === "string" && data) ||
+      `Request failed with status ${res.status}`;
+    throw new Error(message);
+  }
+
+  const blob = await res.blob();
+  const disposition = res.headers.get("Content-Disposition") || "";
+  const filename = disposition.match(/filename="?([^";]+)"?/i)?.[1]
+    || `reporadar-report-${id}.pdf`;
+  const objectUrl = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = objectUrl;
+  link.download = filename;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  window.setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
+}

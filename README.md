@@ -2,7 +2,8 @@
 
 Paste any public GitHub URL → RepoRadar downloads the repo, parses it with a real
 AST engine, and gives you back an **interactive architecture graph**, a **code-smell
-report**, and an **AI-generated onboarding guide**. No more week-long onboarding.
+report**, an **AI-generated onboarding guide**, and a downloadable **PDF analysis
+report**. No more week-long onboarding.
 
 ![Python](https://img.shields.io/badge/Python-3.12-blue)
 ![Django](https://img.shields.io/badge/Django-5.x-green)
@@ -25,6 +26,8 @@ report**, and an **AI-generated onboarding guide**. No more week-long onboarding
   factual guide when no API key is set.
 - **Job pipeline with live progress** — analysis runs in Celery; the UI polls and
   shows real stage progress (downloading → parsing → analyzing → AI → done).
+- **PDF analysis report** — download repository metrics, architecture counts,
+  language breakdown, code-smell findings, and the onboarding guide as a PDF.
 
 ## Architecture
 
@@ -129,6 +132,7 @@ Good demo repos (small → large):
 | GET    | `/api/repos/<id>/graph/`    | `{nodes, edges}`                     |
 | GET    | `/api/repos/<id>/smells/`   | code-smell findings                  |
 | GET    | `/api/repos/<id>/guide/`    | `{"markdown": "..."}`                |
+| GET    | `/api/repos/<id>/report/`   | downloadable PDF analysis report      |
 
 Job statuses: `pending → downloading → parsing → analyzing → ai → done`
 (`failed` on error, with message).

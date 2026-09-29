@@ -2,6 +2,7 @@
 import logging
 import re
 
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from rest_framework import generics, status
 from rest_framework.response import Response
@@ -13,6 +14,7 @@ from api.serializers import (
     RepositoryDetailSerializer,
     RepositoryListSerializer,
 )
+from api.report_pdf import build_repository_report
 from repositories.models import AnalysisJob, Repository
 
 logger = logging.getLogger(__name__)
@@ -99,3 +101,18 @@ class RepositoryGuideView(APIView):
     def get(self, request, pk):
         repository = get_object_or_404(Repository, pk=pk)
         return Response({"markdown": repository.guide_markdown or ""})
+
+
+class RepositoryReportView(APIView):
+    """GET /api/repos/<id>/report/ -> downloadable PDF analysis report."""
+
+    def get(self, request, pk):
+        repository = get_object_or_404(Repository, pk=pk)
+        pdf = build_repository_report(repository)
+        safe_name = re.sub(r"[^A-Za-z0-9._-]+", "-", repository.name).strip("-.") or "repository"
+        safe_owner = re.sub(r"[^A-Za-z0-9._-]+", "-", repository.owner).strip("-.") or "owner"
+        response = HttpResponse(pdf, content_type="application/pdf")
+        response["Content-Disposition"] = (
+            f'attachment; filename="{safe_owner}-{safe_name}-report.pdf"'
+        )
+        return response

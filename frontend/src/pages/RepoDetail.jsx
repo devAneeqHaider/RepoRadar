@@ -4,7 +4,7 @@ import StatCards from "../components/StatCards.jsx";
 import GraphView from "../components/GraphView.jsx";
 import SmellList from "../components/SmellList.jsx";
 import GuideView from "../components/GuideView.jsx";
-import { getRepo, getSmells } from "../api/client.js";
+import { downloadReport, getRepo, getSmells } from "../api/client.js";
 
 const TABS = ["overview", "graph", "smells", "guide"];
 
@@ -86,6 +86,20 @@ export default function RepoDetail() {
   const [error, setError] = useState("");
   const [tab, setTab] = useState("overview");
   const [smellCount, setSmellCount] = useState(null);
+  const [downloadingReport, setDownloadingReport] = useState(false);
+  const [reportError, setReportError] = useState("");
+
+  async function handleDownloadReport() {
+    setDownloadingReport(true);
+    setReportError("");
+    try {
+      await downloadReport(id);
+    } catch (err) {
+      setReportError(err.message || "Could not generate the PDF report.");
+    } finally {
+      setDownloadingReport(false);
+    }
+  }
 
   useEffect(() => {
     let cancelled = false;
@@ -170,6 +184,17 @@ export default function RepoDetail() {
         </div>
         <div className="analyzed-line">
           Analyzed {formatDate(repo.analyzed_at)}
+        </div>
+        <div className="report-actions">
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={handleDownloadReport}
+            disabled={downloadingReport}
+          >
+            {downloadingReport ? "Generating PDF…" : "Download PDF Report"}
+          </button>
+          {reportError && <p className="report-error" role="alert">{reportError}</p>}
         </div>
       </header>
 

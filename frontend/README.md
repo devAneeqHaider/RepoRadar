@@ -84,6 +84,7 @@ reporadar-frontend/
 | GET    | `/api/repos/<id>/graph/`| `{ nodes, edges }`                      |
 | GET    | `/api/repos/<id>/smells/`| Code-smell findings                    |
 | GET    | `/api/repos/<id>/guide/`| `{ markdown }` onboarding guide         |
+| GET    | `/api/repos/<id>/report/`| Downloadable PDF analysis report        |
 
 ## Docker
 
