@@ -19,7 +19,7 @@ from ai_engine.services.exceptions import AIError, AIUnavailableError
 
 logger = logging.getLogger(__name__)
 
-DEFAULT_MODEL = "gemini-2.0-flash"
+DEFAULT_MODEL = "gemini-3.5-flash-lite"
 _REST_ENDPOINT = (
     "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
 )
@@ -51,7 +51,9 @@ class GeminiProvider:
         try:
             genai.configure(api_key=api_key)
             model = genai.GenerativeModel(self.model)
-            response = model.generate_content(prompt)
+            response = model.generate_content(
+                prompt, request_options={"timeout": self.timeout}
+            )
             text = (getattr(response, "text", "") or "").strip()
         except Exception as exc:  # noqa: BLE001 - wrapped below
             raise AIError(f"Gemini request failed: {exc}") from exc

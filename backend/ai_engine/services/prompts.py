@@ -39,8 +39,8 @@ SMELL_EXPLAINER_TASK = (
 )
 
 AI_UNAVAILABLE_NOTE = (
-    "> AI-generated guide unavailable — set GEMINI_API_KEY to enable richer "
-    "guides (free at Google AI Studio)."
+    "> AI-generated guide unavailable; using the factual fallback. Check the "
+    "Celery worker log for the Gemini error."
 )
 
 
