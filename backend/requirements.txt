@@ -7,3 +7,5 @@ google-generativeai
 python-dotenv
 gunicorn
 reportlab>=4,<5
+django-cors-headers
+whitenoise
